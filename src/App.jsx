@@ -2,6 +2,8 @@ import Layout from "./Layout";
 import ProfilePage from "./Pages/User/ProfilePage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Community from "./pages/community/Community";
+import Explore from "./pages/explore/Explore";
 import {
   createRoutesFromElements,
   Route,
@@ -18,6 +20,8 @@ import HomePage from "./Pages/Home/HomePage";
 
 import Transactions from "./Pages/User/Transactions";
 import EditProfile from "./Pages/User/EditProfile";
+import ChatPage from "./pages/Chat/chatPage";
+import Onboard from "./pages/onboard/Onboard";
 import PostDetails from "./pages/post/PostDetails";
 import CreateCommunity from "./pages/community/CreateCommunity";
 
@@ -30,6 +34,18 @@ function App() {
     createRoutesFromElements(
       <Route path="/" element={<Layout />}>
         <Route path="" element={<HomePage />}></Route>
+
+        <Route
+          path="my/chats"
+          element={
+            <ProtectedRoutes>
+              <ChatPage />
+            </ProtectedRoutes>
+          }
+        ></Route>
+        <Route path="community/:community" element={<Community />} />
+        <Route path="user/onboarding" element={<Onboard />} />
+        <Route path="Explore" element={<Explore />} />
         <Route
           path=":community/post/:slug/:id"
           element={<PostDetails />}
@@ -64,6 +80,30 @@ function App() {
           element={
             <ProtectedRoutes>
               <EditProfile />
+            </ProtectedRoutes>
+          }
+        ></Route>
+        <Route
+          path="Community"
+          element={
+            <ProtectedRoutes>
+              <Community />
+            </ProtectedRoutes>
+          }
+        ></Route>
+        <Route
+          path="Onboard"
+          element={
+            <ProtectedRoutes>
+              <Onboard />
+            </ProtectedRoutes>
+          }
+        ></Route>
+        <Route
+          path="Explore"
+          element={
+            <ProtectedRoutes>
+              <Explore />
             </ProtectedRoutes>
           }
         ></Route>
