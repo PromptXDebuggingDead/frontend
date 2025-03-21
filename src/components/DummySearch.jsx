@@ -36,15 +36,6 @@ const DummySearch = () => {
   return (
     <>
       {/* Mobile search button (navigates to search page) */}
-      <div
-        className="w-full cursor-pointer h-[2.6rem] flex md:hidden bg-gray-100 rounded items-center justify-start border border-gray-300"
-        onClick={() => navigate("/search")}
-      >
-        <IoSearch className="text-xl mx-2 text-slate-800" />
-        <p className="text-sm font-semibold text-slate-600">
-          Search for something...
-        </p>
-      </div>
 
       {/* Desktop search bar */}
       <div className="w-full cursor-pointer h-[2.6rem] hidden md:flex bg-gray-50 items-center justify-start border border-gray-500 rounded-full">

@@ -17,11 +17,12 @@ const MainHeader = ({ setOpen }) => {
   const { user, isAuthenticated } = useSelector((state) => state.user);
   const [dropdown, setDropdown] = useState(false);
   return (
-    <div className="flex w-full bg-white justify-between items-center md:px-12 px-4 h-16">
+    <div className="flex w-full bg-white justify-between items-center md:px-12 px-4 h-14 md:h-16">
       {/* Logo */}
       <Link to="/" className="w-full">
         <h1 className="text-2xl font-bold">VerveSpace</h1>
       </Link>
+
       <DummySearch />
       {/* Menu */}
       <div className="flex  justify-end w-full gap-3 md:gap-5 items-center">
@@ -54,9 +55,9 @@ const MainHeader = ({ setOpen }) => {
 
             <p
               onClick={() => dispatch(openAuthModal("signup"))}
-              className="text-white w-32 text-center cursor-pointer hidden md:block font-medium px-4 py-2 bg-gray-700"
+              className="text-white md:w-32 text-center cursor-pointer block font-medium px-4 py-2 bg-gray-700 text-xs md:text-base rounded-2xl"
             >
-              New User +
+              Sign Up
             </p>
           </>
         )}
@@ -122,7 +123,7 @@ const Navbar = ({ open, setOpen }) => {
   const dispatch = useDispatch();
 
   return (
-    <div className=" bg-white sticky top-0 z-10">
+    <div className=" bg-white sticky top-0 z-20 border-b border-gray-400">
       {/* Main(Common) Header */}
       <MainHeader setOpen={setOpen} />
       {/* Menu Header */}
