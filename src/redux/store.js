@@ -8,6 +8,7 @@ import {
   orderDetailsReducer,
   orderReducer,
 } from "./features/orderSlice";
+import chatSlice from "./features/chatSlice";
 export const store = configureStore({
   reducer: {
     authModal: authModalReducer.reducer,
@@ -15,6 +16,8 @@ export const store = configureStore({
     updateProfile: updateProfileReducer.reducer,
     product: productReducer.reducer,
     productDetail: productDetailReducer.reducer,
+
+    chat: chatSlice.reducer,
 
     order: orderReducer.reducer,
     newOrder: newOrderReducer.reducer,
