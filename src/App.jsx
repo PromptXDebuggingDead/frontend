@@ -18,6 +18,7 @@ import HomePage from "./Pages/Home/HomePage";
 
 import Transactions from "./Pages/User/Transactions";
 import EditProfile from "./Pages/User/EditProfile";
+import ChatPage from "./pages/Chat/chatPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,15 @@ function App() {
     createRoutesFromElements(
       <Route path="/" element={<Layout />}>
         <Route path="" element={<HomePage />}></Route>
+
+        <Route
+          path="my/chats"
+          element={
+            <ProtectedRoutes>
+              <ChatPage />
+            </ProtectedRoutes>
+          }
+        ></Route>
 
         <Route
           path="my/profile"
