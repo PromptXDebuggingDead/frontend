@@ -18,6 +18,8 @@ import HomePage from "./Pages/Home/HomePage";
 
 import Transactions from "./Pages/User/Transactions";
 import EditProfile from "./Pages/User/EditProfile";
+import PostDetails from "./pages/post/PostDetails";
+import CreateCommunity from "./pages/community/CreateCommunity";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +30,10 @@ function App() {
     createRoutesFromElements(
       <Route path="/" element={<Layout />}>
         <Route path="" element={<HomePage />}></Route>
+        <Route
+          path=":community/post/:slug/:id"
+          element={<PostDetails />}
+        ></Route>
 
         <Route
           path="my/profile"
@@ -59,6 +65,14 @@ function App() {
             <ProtectedRoutes>
               <EditProfile />
             </ProtectedRoutes>
+          }
+        ></Route>
+        <Route
+          path="community/create"
+          element={
+            // <ProtectedRoutes>
+            <CreateCommunity />
+            // </ProtectedRoutes>
           }
         ></Route>
       </Route>

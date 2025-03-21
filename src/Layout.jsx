@@ -26,7 +26,7 @@ const Layout = () => {
       <main className="lg:pl-[235px] overflow-x-hidden">
         <SideBar isSidebarOpen={open} setSidebarOpen={setOpen} />
         <Outlet />
-        <Footer />
+        {/* <Footer /> */}
       </main>
     </>
   );

@@ -51,7 +51,7 @@ const SideBar = () => {
         )}
       </span>
       <div
-        className={`sidebar transition-all duration-300 ease-in-out fixed bottom-0 lg:left-0 px-2 w-[300px] lg:w-[230px] top-12 md:top-16 overflow-y-auto text-center bg-white z-40 ${
+        className={`sidebar transition-all duration-300 ease-in-out fixed bottom-0 lg:left-0 px-2 w-[300px] lg:w-[230px] top-12 md:top-16 overflow-y-auto text-center grainy-dark z-40 ${
           !isSidebarOpen ? "-left-[300px]" : "left-0"
         }`}
       >

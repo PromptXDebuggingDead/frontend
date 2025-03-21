@@ -3,6 +3,7 @@ import { TbArrowBigDown, TbArrowBigUp } from "react-icons/tb";
 import { LuMessageCircle } from "react-icons/lu";
 import { LiaMedalSolid } from "react-icons/lia";
 import { IoShareSocialOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 // Sample post data
 
@@ -11,11 +12,22 @@ const post = {
   img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlZ2vhLzIdtwpwXw90ZuWhngB-MdFsjD64CQ&s",
   likes: 27,
   comments: 10,
+  _id: 1,
+  community: {
+    name: "Community 1",
+    username: "community1",
+    _id: 1,
+  },
 };
 
 const PostCard = () => {
   return (
-    <div className="max-w-3xl w-full rounded-xl bg-white hover:bg-gray-100 border border-gray-300 py-5">
+    <Link
+      to={`${post.community.username}/post/${post.title.toLocaleLowerCase()}/${
+        post._id
+      }`}
+      className="max-w-3xl w-full rounded-xl bg-white hover:bg-gray-100 border border-gray-300 py-5"
+    >
       <div className="flex items-center justify-between gap-2 p-4">
         <div className="flex items-center gap-2 text-gray-700 cursor-pointer">
           <img src={post.img} alt="" className="w-8 h-8 rounded-full" />
@@ -63,7 +75,7 @@ const PostCard = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
