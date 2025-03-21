@@ -12,6 +12,7 @@ import { FiBookOpen } from "react-icons/fi";
 import { GiProgression } from "react-icons/gi";
 import { logoutUser } from "../redux/actions/userActions";
 import { IoMdTrendingUp } from "react-icons/io";
+import { BsArrowUpRightCircleFill } from "react-icons/bs";
 
 const SideBar = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -38,7 +39,7 @@ const SideBar = () => {
   return (
     <>
       <span
-        className={`fixed z-[100000] lg:hidden text-4xl md:text-5xl top-16 ${
+        className={`fixed z-[100000] lg:hidden text-4xl md:text-5xl top-14 ${
           isSidebarOpen ? "left-[220px] " : " left-4 "
         }cursor-pointer `}
         onClick={toggleSidebar}
@@ -58,8 +59,8 @@ const SideBar = () => {
           onClick={toggleSidebar}
           to={"/my/profile"}
           className={({ isActive }) =>
-            `p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-emerald-100 text-gray-700 ${
-              isActive && "bg-emerald-100 text-primary"
+            `p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-gray-200 text-gray-700 ${
+              isActive && "bg-gray-200 text-primary"
             }`
           }
         >
@@ -70,12 +71,12 @@ const SideBar = () => {
           onClick={toggleSidebar}
           to={"/popular"}
           className={({ isActive }) =>
-            `p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-emerald-100 text-gray-700 ${
-              isActive && "bg-emerald-100 text-primary"
+            `p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-gray-200 text-gray-700 ${
+              isActive && "bg-gray-200 text-primary"
             }`
           }
         >
-          <BsHouseDoor className="text-xl" />
+          <BsArrowUpRightCircleFill className="text-xl" />
           <span className="text-[15px] ml-4 font-semibold">Popular</span>
         </NavLink>
 
@@ -83,8 +84,8 @@ const SideBar = () => {
           onClick={toggleSidebar}
           to={"/trending"}
           className={({ isActive }) =>
-            `p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-emerald-100 text-gray-700 ${
-              isActive && "bg-emerald-100 text-primary"
+            `p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-gray-200 text-gray-700 ${
+              isActive && "bg-gray-200 text-primary"
             }`
           }
         >
@@ -92,9 +93,9 @@ const SideBar = () => {
           <span className="text-[15px] ml-4 font-semibold">Trending</span>
         </NavLink>
 
-        <div className="w-full h-[0.9px] bg-gradient-to-l from-gray-50 via-gray-700 to-gray-50 " />
+        <div className="w-full mt-4 h-[0.9px] bg-gradient-to-l from-gray-50 via-gray-700 to-gray-50 " />
         <div
-          className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-emerald-100 text-gray-700 hover:text-primary"
+          className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-gray-200 text-gray-700 hover:text-primary"
           onClick={() => toggleDropdown("courses")}
         >
           <FiBookOpen className="text-lg" />
@@ -119,8 +120,8 @@ const SideBar = () => {
               onClick={toggleSidebar}
               to={"/product/all"}
               className={({ isActive }) =>
-                `p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-emerald-100 text-gray-700 hover:text-primary ${
-                  isActive && "bg-emerald-100 text-primary"
+                `p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-gray-200 text-gray-700 hover:text-primary ${
+                  isActive && "bg-gray-200 text-primary"
                 }`
               }
             >
@@ -130,8 +131,8 @@ const SideBar = () => {
               onClick={toggleSidebar}
               to={"/product/create"}
               className={({ isActive }) =>
-                `p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-emerald-100 text-gray-700 hover:text-primary ${
-                  isActive && "bg-emerald-100 text-primary"
+                `p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-gray-200 text-gray-700 hover:text-primary ${
+                  isActive && "bg-gray-200 text-primary"
                 }`
               }
             >
@@ -141,8 +142,8 @@ const SideBar = () => {
               onClick={toggleSidebar}
               to={"/courses"}
               className={({ isActive }) =>
-                `p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-emerald-100 text-gray-700 hover:text-primary ${
-                  isActive && "bg-emerald-100 text-primary"
+                `p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-gray-200 text-gray-700 hover:text-primary ${
+                  isActive && "bg-gray-200 text-primary"
                 }`
               }
             >
@@ -154,7 +155,7 @@ const SideBar = () => {
         {/* Logout */}
         <button
           onClick={() => logout()}
-          className="p-2.5 w-full mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-emerald-100 text-gray-700 hover:text-primary"
+          className="p-2.5 w-full mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-gray-200 text-gray-700 hover:text-primary"
         >
           <LuLogOut />
           <span className="text-[15px] ml-4 font-semibold">Logout</span>
