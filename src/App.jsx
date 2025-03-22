@@ -64,7 +64,7 @@ function App() {
           path="my/dashboard"
           element={
             <ProtectedRoutes>
-              <UserDashboard />
+              <ProfilePage />
             </ProtectedRoutes>
           }
         ></Route>
