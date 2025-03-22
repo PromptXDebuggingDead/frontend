@@ -38,7 +38,7 @@ const DummySearch = () => {
       {/* Mobile search button (navigates to search page) */}
 
       {/* Desktop search bar */}
-      <div className="w-full cursor-pointer h-[2.6rem] hidden md:flex bg-gray-50 items-center justify-start border border-gray-500 rounded-full">
+      <div onClick={()=>navigate("/explore")} className="w-full cursor-pointer h-[2.6rem] hidden md:flex bg-gray-50 items-center justify-start border border-gray-500 rounded-full">
         <IoSearch className="text-xl mx-2 text-slate-800" />
         <form className="w-full" onSubmit={handleSubmit}>
           <input

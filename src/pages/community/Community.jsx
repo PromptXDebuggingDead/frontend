@@ -73,11 +73,12 @@
 //   );
 // }
 
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import PostCard from "../../components/global/PostCard";
 import API from "../../utils/API";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 export default function RedditHeader() {
   const { id } = useParams();
@@ -87,6 +88,7 @@ export default function RedditHeader() {
   const [sortBy, setSortBy] = useState("hot");
   const [isJoined, setIsJoined] = useState(false);
   const { user } = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
   const fetchCommunity = async () => {
     setIsLoading(true);
@@ -119,9 +121,15 @@ export default function RedditHeader() {
     }
   };
 
-  const handleJoinCommunity = () => {
+  const handleJoinCommunity = async () => {
     setIsJoined(!isJoined);
-    // Here you would add API call to join/leave community
+    try {
+      const { data } = await API.post(`/community/${id}/join`);
+      toast.success("Joined Successfully");
+      navigate(`/community/${id}`);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleSortChange = (newSortBy) => {

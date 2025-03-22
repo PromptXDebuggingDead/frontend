@@ -123,18 +123,7 @@ const SideBar = () => {
                 }`
               }
             >
-              Create Product
-            </NavLink>
-            <NavLink
-              onClick={toggleSidebar}
-              to={"/courses"}
-              className={({ isActive }) =>
-                `p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-gray-200 text-gray-700 hover:text-primary ${
-                  isActive && "bg-gray-200 text-primary"
-                }`
-              }
-            >
-              Explore Courses
+              Some Subcategory
             </NavLink>
           </div>
         </div>

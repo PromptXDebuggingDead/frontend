@@ -52,7 +52,7 @@ const PostCard = ({ post, isJoined, community }) => {
         </h1>
         <div>
           <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlZ2vhLzIdtwpwXw90ZuWhngB-MdFsjD64CQ&s"
+            src={post?.images[0]}
             alt=""
             className="h-full w-full rounded-xl object-cover hover:scale-[0.99] transition-transform duration-300"
           />

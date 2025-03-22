@@ -3,7 +3,7 @@ import { IoShareSocialOutline } from "react-icons/io5";
 import { LiaMedalSolid } from "react-icons/lia";
 import { LuMessageCircle } from "react-icons/lu";
 import { TbArrowBigDown, TbArrowBigUp } from "react-icons/tb";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { IoFlagOutline } from "react-icons/io5";
 import Comments from "./Comments";
 import API from "../../utils/API";
@@ -19,22 +19,22 @@ const relatedCommunities = [
     _id: 1,
   },
   {
-    name: "Community 1",
-    username: "community1",
+    name: "Community 2",
+    username: "community2",
     bio: "Welcome to r/Formula1, the best independent online Formula 1 community!",
     createdAt: "2021-09-01T00:00:00.000Z",
     _id: 2,
   },
   {
-    name: "Community 1",
-    username: "community1",
+    name: "Community 3",
+    username: "community3",
     bio: "Welcome to r/Formula1, the best independent online Formula 1 community!",
     createdAt: "2021-09-01T00:00:00.000Z",
     _id: 3,
   },
   {
-    name: "Community 1",
-    username: "community1",
+    name: "Community 4",
+    username: "community4",
     bio: "Welcome to r/Formula1, the best independent online Formula 1 community!",
     createdAt: "2021-09-01T00:00:00.000Z",
     _id: 4,
@@ -119,7 +119,7 @@ const PostDetails = () => {
   const [comment, setComment] = React.useState("");
   const { id, community } = useParams();
   const [communityData, setCommunity] = useState({});
-
+  const navigate = useNavigate();
   const [post, setPost] = React.useState({});
   // const [relatedCommunities, setRelatedCommunities] = React.useState([]);
   const [isJoined, setIsJoined] = useState(false);
@@ -153,6 +153,16 @@ const PostDetails = () => {
     fetchCommunity();
     fetchPost();
   }, [id]);
+
+  const handleJoinCommunity = async () => {
+    try {
+      const { data } = await API.post(`/community/${community}/join`);
+      toast.success("Joined Successfully");
+      navigate(`/community/${community}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div>
       <div className="max-w-6xl lg:grid lg:grid-cols-7 pt-3 p-4 grainy-light">
@@ -205,10 +215,12 @@ const PostDetails = () => {
                     className="w-10 h-10 rounded-full"
                   />
                   <div>
-                    <h1 className="text-lg text-gray-800 font-semibold">
+                    <h1 className="text-sm text-gray-800 font-semibold">
                       {communityData?.name}
                     </h1>
-                    <p className="text-gray-700">@r/{communityData?.name}</p>
+                    <p className="text-gray-700 text-xs">
+                      @r/{communityData?.name}
+                    </p>
                   </div>
                 </div>
                 {isJoined ? (
@@ -216,7 +228,10 @@ const PostDetails = () => {
                     Joined
                   </button>
                 ) : (
-                  <button className="w-fit bg-blue-500 text-white rounded-full p-1 px-4">
+                  <button
+                    onClick={handleJoinCommunity}
+                    className="w-fit bg-blue-500 text-white rounded-full p-1 px-4"
+                  >
                     Join
                   </button>
                 )}
