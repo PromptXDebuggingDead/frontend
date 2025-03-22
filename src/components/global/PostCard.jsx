@@ -19,7 +19,7 @@ const PostCard = ({ post, isJoined, community }) => {
   };
 
   return (
-    <div className="max-w-3xl w-full rounded-xl bg-white hover:bg-gray-100 border border-gray-300 py-5">
+    <div className="max-w-3xl w-full rounded-xl bg-white hover:bg-gray-100 border border-gray-300 py-5 px-4">
       <div className="flex items-center justify-between gap-2 p-4">
         <Link
           to={`/community/${community._id}`}
