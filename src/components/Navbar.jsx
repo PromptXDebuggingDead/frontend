@@ -11,6 +11,7 @@ import { LiaTimesSolid } from "react-icons/lia";
 import { CiSearch } from "react-icons/ci";
 import Logo from "../assets/Images/logo.png";
 import DummySearch from "./DummySearch";
+import { FiPlus } from "react-icons/fi";
 
 const MainHeader = ({ setOpen }) => {
   const dispatch = useDispatch();
@@ -27,8 +28,13 @@ const MainHeader = ({ setOpen }) => {
       {/* Menu */}
       <div className="flex  justify-end w-full gap-3 md:gap-5 items-center">
         {isAuthenticated ? (
-          <div className="relative hidden sm:flex items-center">
-            <p className="text-sm">{user ? user?.name?.split(" ")[0] : ""}</p>
+          <div className="relative hidden sm:flex gap-5 items-center">
+            <Link
+              to={"community/create"}
+              className="p-2 bg-gray-50 flex gap-2 items-center  hover:bg-gray-200 border rounded-full "
+            >
+              <FiPlus className="text-xl" /> Community
+            </Link>
             <div
               onClick={() => setDropdown(!dropdown)}
               className="flex gap-1 items-center justify-center max-w-56 min-w-20"

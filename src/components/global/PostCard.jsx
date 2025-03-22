@@ -2,44 +2,51 @@ import React from "react";
 import { TbArrowBigDown, TbArrowBigUp } from "react-icons/tb";
 import { LuMessageCircle } from "react-icons/lu";
 import { LiaMedalSolid } from "react-icons/lia";
-import { IoShareSocialOutline } from "react-icons/io5";
+import { IoFlagOutline, IoShareSocialOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import API from "../../utils/API";
+import { toast } from "react-toastify";
 
-// Sample post data
+const PostCard = ({ post, isJoined, community }) => {
+  const giveLike = async () => {
+    try {
+      const { data } = await API.put(`/post/like/${post._id}`);
+      window.location.reload();
+      toast.success("liked");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-const post = {
-  title: "Pokémon TCG Pocket: Shining Revelry | Official Trailer",
-  img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlZ2vhLzIdtwpwXw90ZuWhngB-MdFsjD64CQ&s",
-  likes: 27,
-  comments: 10,
-  _id: 1,
-  community: {
-    name: "Community 1",
-    username: "community1",
-    _id: 1,
-  },
-};
-
-const PostCard = () => {
   return (
-    <Link
-      to={`${post.community.username}/post/${post.title.toLocaleLowerCase()}/${
-        post._id
-      }`}
-      className="max-w-3xl w-full rounded-xl bg-white hover:bg-gray-100 border border-gray-300 py-5"
-    >
+    <div className="max-w-3xl w-full rounded-xl bg-white hover:bg-gray-100 border border-gray-300 py-5">
       <div className="flex items-center justify-between gap-2 p-4">
-        <div className="flex items-center gap-2 text-gray-700 cursor-pointer">
-          <img src={post.img} alt="" className="w-8 h-8 rounded-full" />
-          <p className="text-sm">@community</p>
-        </div>
+        <Link
+          to={`/community/${community._id}`}
+          className="flex items-center gap-2 text-gray-700 cursor-pointer"
+        >
+          <img src={community.avatar} alt="" className="w-8 h-8 rounded-full" />
+          <p className="text-sm">r/{community.name}</p>
+        </Link>
 
-        <button className="text-center cursor-pointer px-4 py-1 text-white bg-blue-500 rounded-full">
-          Join
-        </button>
+        {/* {isJoined ? (
+          <div className="flex items-center gap-2 text-gray-700 cursor-pointer">
+            <IoFlagOutline />
+            <p className="text-sm">Joined</p>
+          </div>
+        ) : (
+          <button className="text-center cursor-pointer px-4 py-1 text-white bg-blue-500 rounded-full">
+            Join
+          </button>
+        )} */}
       </div>
 
-      <div className="px-5">
+      <Link
+        to={`/${post?.community}/post/${post.title.toLocaleLowerCase()}/${
+          post._id
+        }`}
+        className="px-5"
+      >
         <h1 className="text-gray-800 text-xl mb-2 font-semibold">
           {post.title}
         </h1>
@@ -54,11 +61,11 @@ const PostCard = () => {
           {/* Upvotes */}
           <div className="flex items-center justify-center gap-1 border border-gray-300 rounded-full px-3 py-1 hover:bg-gray-200">
             <span className="flex items-center gap-1">
-              <TbArrowBigUp className="hover:text-white cursor-pointer rounded-full hover:bg-gray-700" />
-              27K
-            </span>
-            <span>
-              <TbArrowBigDown className="hover:text-white cursor-pointer rounded-full hover:bg-gray-700" />
+              <TbArrowBigUp
+                onClick={giveLike}
+                className="hover:text-white cursor-pointer rounded-full hover:bg-gray-700"
+              />
+              {post?.likes?.length || "0"}
             </span>
           </div>
           {/* Comments Count */}
@@ -74,8 +81,8 @@ const PostCard = () => {
             Share
           </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 };
 

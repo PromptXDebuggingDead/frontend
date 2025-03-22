@@ -24,6 +24,7 @@ import ChatPage from "./pages/Chat/chatPage";
 import Onboard from "./pages/onboard/Onboard";
 import PostDetails from "./pages/post/PostDetails";
 import CreateCommunity from "./pages/community/CreateCommunity";
+import CreatePost from "./pages/post/CreatePost";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ function App() {
             </ProtectedRoutes>
           }
         ></Route>
-        <Route path="community/:community" element={<Community />} />
+        {/* <Route path="community/:community" element={<Community />} /> */}
         <Route path="user/onboarding" element={<Onboard />} />
         <Route path="Explore" element={<Explore />} />
         <Route
@@ -84,7 +85,7 @@ function App() {
           }
         ></Route>
         <Route
-          path="Community"
+          path="community/:id"
           element={
             <ProtectedRoutes>
               <Community />
@@ -100,7 +101,7 @@ function App() {
           }
         ></Route>
         <Route
-          path="Explore"
+          path="explore"
           element={
             <ProtectedRoutes>
               <Explore />
@@ -110,9 +111,17 @@ function App() {
         <Route
           path="community/create"
           element={
-            // <ProtectedRoutes>
-            <CreateCommunity />
-            // </ProtectedRoutes>
+            <ProtectedRoutes>
+              <CreateCommunity />
+            </ProtectedRoutes>
+          }
+        ></Route>
+        <Route
+          path="post/create"
+          element={
+            <ProtectedRoutes>
+              <CreatePost />
+            </ProtectedRoutes>
           }
         ></Route>
       </Route>

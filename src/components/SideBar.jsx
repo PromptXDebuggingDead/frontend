@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BiChevronDown } from "react-icons/bi";
+import { BiChevronDown, BiSearch } from "react-icons/bi";
 import { LiaTimesSolid } from "react-icons/lia";
 import { HiMiniBars3BottomLeft } from "react-icons/hi2";
 import { BsHouseDoor } from "react-icons/bs";
@@ -57,7 +57,7 @@ const SideBar = () => {
       >
         <NavLink
           onClick={toggleSidebar}
-          to={"/my/profile"}
+          to={"/"}
           className={({ isActive }) =>
             `p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-gray-200 text-gray-700 ${
               isActive && "bg-gray-200 text-primary"
@@ -69,28 +69,15 @@ const SideBar = () => {
         </NavLink>
         <NavLink
           onClick={toggleSidebar}
-          to={"/popular"}
+          to={"/explore"}
           className={({ isActive }) =>
             `p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-gray-200 text-gray-700 ${
               isActive && "bg-gray-200 text-primary"
             }`
           }
         >
-          <BsArrowUpRightCircleFill className="text-xl" />
-          <span className="text-[15px] ml-4 font-semibold">Popular</span>
-        </NavLink>
-
-        <NavLink
-          onClick={toggleSidebar}
-          to={"/trending"}
-          className={({ isActive }) =>
-            `p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-gray-200 text-gray-700 ${
-              isActive && "bg-gray-200 text-primary"
-            }`
-          }
-        >
-          <IoMdTrendingUp className="text-xl" />
-          <span className="text-[15px] ml-4 font-semibold">Trending</span>
+          <BiSearch className="text-xl" />
+          <span className="text-[15px] ml-4 font-semibold">Explore</span>
         </NavLink>
 
         <div className="w-full mt-4 h-[0.9px] bg-gradient-to-l from-gray-50 via-gray-700 to-gray-50 " />

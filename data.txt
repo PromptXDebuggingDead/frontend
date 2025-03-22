@@ -1,0 +1,121 @@
+import React from "react";
+
+import CloudinaryUploadWidget from "../../components/global/CloudinaryUploadWidget";
+
+// Cloudinary configuration
+const CLOUDINARY_UPLOAD_PRESET = "ml_default";
+const CLOUDINARY_CLOUD_NAME = "dtbbuevez";
+const CLOUDINARY_UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`;
+const CreatePost = () => {
+  return <div>CreatePost</div>;
+};
+
+export default CreatePost;
+
+  const handleImagesUploadSuccess = (info) => {
+    setFormData((prev) => ({
+      ...prev,
+      images: [...prev.images, info.secure_url],
+    }));
+    toast.success("Image uploaded successfully!");
+  };
+
+
+
+ {formData.thumbnail ? (
+            <div className="mt-2 relative w-40 h-40 border rounded overflow-hidden">
+              <img
+                src={formData.thumbnail}
+                alt="Thumbnail"
+                className="w-full h-full object-cover"
+              />
+              <button
+                type="button"
+                onClick={removeThumbnail}
+                className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 focus:outline-none"
+                aria-label="Remove thumbnail"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-4 w-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+          ) : (
+            <div className="mt-2">
+              <CloudinaryUploadWidget
+                cloudName={CLOUDINARY_CLOUD_NAME}
+                uploadPreset={CLOUDINARY_UPLOAD_PRESET}
+                onSuccess={handleThumbnailUploadSuccess}
+                buttonText="Upload Thumbnail"
+                multiple={false}
+              />
+              {errors.thumbnail && (
+                <p className="mt-1 text-xs text-red-500">{errors.thumbnail}</p>
+              )}
+            </div>
+          )}
+
+
+import mongoose, { Schema } from "mongoose";
+
+const postSchema = new Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+    },
+    content: {
+      type: String,
+      required: true,
+    },
+    images: [],
+    video: {
+      type: String,
+      required: false,
+    },
+    category: {
+      type: String,
+      required: false,
+    },
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    community: {
+      type: Schema.Types.ObjectId,
+      ref: "Community",
+      required: true,
+    },
+
+    likes: [
+      {
+        user: {
+          type: Schema.Types.ObjectId,
+          ref: "User",
+          required: true,
+        },
+      },
+    ],
+  },
+  { timestamps: true }
+);
+
+// index for likes
+postSchema.index({ likes: 1 });
+
+export default mongoose.model("Post", postSchema);
+
+
+Create a createpost form to submit the post according to the schema.. make sure to upload the photo(media) to cloudinary in client side as done in the above samples.

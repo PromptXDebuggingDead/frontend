@@ -23,7 +23,11 @@ const CreateCommunity = () => {
     bio: "",
     categories: [],
     guidelines: [],
+    avatar: "",
   });
+  const [imgUrl, setImgUrl] = useState(
+    "https://lh3.googleusercontent.com/a-/AFdZucpC_6WFBIfaAbPHBwGM9z8SxyM1oV4wB4Ngwp_UyQ=s96-c"
+  );
   const [errors, setErrors] = useState({
     name: "",
     bio: "",
@@ -138,6 +142,22 @@ const CreateCommunity = () => {
     }
   };
 
+  const fileUploadHandle = (e) => {
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setImgUrl(reader.result);
+        setFormData((prev) => ({
+          ...prev,
+          avatar: reader.result,
+        }));
+      }
+    };
+
+    reader.readAsDataURL(e.target.files[0]);
+  };
+
   return (
     <div className=" grainy-light py-10 pb-20">
       <div className="max-w-3xl border border-gray-500 mx-auto p-6 rounded-lg">
@@ -220,6 +240,35 @@ const CreateCommunity = () => {
             {errors.categories && (
               <p className="mt-1 text-sm text-red-500">{errors.categories}</p>
             )}
+          </div>
+
+          {/* Image Upload */}
+
+          <div className="flex items-center space-x-6">
+            <div className="shrink-0">
+              <img
+                id="preview_img"
+                className="h-16 w-16 object-cover rounded-full"
+                src={imgUrl}
+                alt="Current profile photo"
+              />
+            </div>
+            <label className="block">
+              <span className="sr-only">Choose profile photo</span>
+              <input
+                type="file"
+                name="avatar"
+                accept="image/"
+                onChange={fileUploadHandle}
+                className="block w-full text-sm text-slate-500
+                            file:mr-4 file:py-2 file:px-4
+                            file:rounded-full file:border-0
+                            file:text-sm file:font-semibold
+                            file:bg-violet-50 file:text-violet-700
+                            hover:file:bg-violet-100
+                          "
+              />
+            </label>
           </div>
 
           {/* Guidelines */}
